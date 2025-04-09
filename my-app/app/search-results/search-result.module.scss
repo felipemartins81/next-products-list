@@ -1,0 +1,23 @@
+.main {
+   width: 1200px;
+   margin: 0 auto;
+
+   li {
+      background-color: white;
+      padding: 12px 12px 32px;
+      border-bottom: 2px solid #eee;
+
+      img {
+         float: left;
+         margin-right: 24px;
+      }
+   }
+}
+
+.clear {
+   clear: both;
+}
+
+.lineThrough {
+   text-decoration: line-through;
+}
