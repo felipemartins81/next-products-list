@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import styles from "./header.module.scss";
+import Search from "./search";
 
 export default function Header() {
    return (
@@ -10,7 +11,7 @@ export default function Header() {
                <div className="flex shrink-0 items-center">
                   <Image src={'/logo.png'} alt={'Mercado Libre logo'} width={134} height={34} className={styles.logo} />
                </div>
-               <input type="search" name="input-search" id="input-search" className={styles.search} placeholder='Buscar produtos, marcas e mais...' />
+               <Search placeholder="Buscar produtos, marcas e mais..." />
              </div>
              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                <button type="button" className={styles.searchButton}>
