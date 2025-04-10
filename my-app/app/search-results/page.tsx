@@ -1,14 +1,30 @@
 import Image from 'next/image';
 import { fechProducts } from '../lib/data';
 import styles from './search-result.module.scss';
+import Pagination from "@/app/ui/pagination";
 
-export default async function SearchResults() {
+type pageProps = {
+  searchParams?: Promise<{
+    query?: string;
+    page?: string;
+  }>;
+}
+
+export default async function SearchResults(props: pageProps) {
+   const searchParams = await props.searchParams;
+   const query = searchParams?.query || '';
+   const currentPage = Number(searchParams?.page) || 1;
    const products = await fechProducts();
-   console.log("👀 ~ products:", products.results[1]) // products.results.find(e => e.promotions))
+   const filteredProducts = query ? products?.results.filter(e => e.title.includes(query)) : products?.results;
+   const listAmount = 2;
+   const limit = listAmount * currentPage;
+   const offset = (currentPage - 1) * listAmount;
+   const totalPages = Math.ceil(filteredProducts.length / listAmount);
+
    return (
       <main className={styles.main}>
         <ul>
-          {products && products.results.splice(0,5).map((product) =>
+          {filteredProducts.slice(offset, limit).map((product) =>
             <li key={product.id}>
               <Image src={product.thumbnail} alt={product.title} width={259} height={250} className="rounded-md" />
               <p className="mb-2">{product.title}</p>
@@ -23,6 +39,7 @@ export default async function SearchResults() {
             </li>
           )}
         </ul>
+        <Pagination totalPages={totalPages} />
       </main>
     );
 }
