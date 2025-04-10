@@ -1,5 +1,6 @@
 import '@/app/ui/global.css';
 import { roboto } from '@/app/ui/fonts'; // FIXME: Fonte 'proxima nova' disponivel apenas via Adobe CC
+import Header from './ui/header/header';
 
 export default function RootLayout({
   children,
@@ -8,7 +9,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${roboto.className} antialiased`}>{children}</body>
+      <body className={`${roboto.className} antialiased`}>
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }

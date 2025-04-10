@@ -14,7 +14,7 @@ export default function ({ placeholder }: { placeholder: string }) {
       const params = new URLSearchParams(searchParams || '');
       params.set('page', '1');
       term ? params.set('query', term) : params.delete('query');
-      replace(`${pathname}?${params.toString()}`);
+      replace(`/items?${params.toString()}`);
    }, 500);
 
    return (

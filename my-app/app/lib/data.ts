@@ -1,4 +1,4 @@
-import productsList from './json/search-MLA-arroz.json';
+import productsList from './json/search-MLA.json';
 // import { formatCurrency } from './utils';
 
 export async function fetchProducts() {

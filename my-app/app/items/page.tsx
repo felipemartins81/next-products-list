@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { fetchProducts } from '../lib/data';
-import styles from './search-result.module.scss';
+import styles from './items.module.scss';
 import Pagination from "@/app/ui/pagination";
 import Link from 'next/link';
 
@@ -27,7 +27,7 @@ export default async function SearchResults(props: pageProps) {
       <ul>
         {filteredProducts.slice(offset, limit).map((product) =>
           <li key={product.id}>
-            <Link href={`/search-results/${product.id}`}>
+            <Link href={`/items/${product.id}`}>
               <Image src={product.thumbnail} alt={product.title} width={259} height={250} className="rounded-md" />
               <p className="mb-2">{product.title}</p>
               <p className="mb-6">Por {product.seller?.nickname}</p>
