@@ -17,7 +17,7 @@ export async function fetchProductDetail(id: string) {
     const product = await require(`./json/item-${id}.json`);
     const description = await require(`./json/item-${id}-description.json`);
     const categories = await require(`./json/item-${id}-category.json`);
-    product.description = description.plain_text || 'Nnehhuma descrição disponível para este produto ;(';
+    product.description = description.plain_text || 'Nenhuma descrição disponível para este produto ;(';
     product.breadcrumbs = categories.path_from_root.map((e: { name: string }) => e.name).join(' > ');
     return product;
   }
