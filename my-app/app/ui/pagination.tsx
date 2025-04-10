@@ -21,7 +21,7 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
 
    return (
       <>
-         <div className="inline-flex">
+         <div className="inline-flex justify-center w-full mt-4">
             <PaginationArrow
                direction="left"
                href={createPageURL(currentPage - 1)}
@@ -71,11 +71,11 @@ function PaginationNumber({
    isActive: boolean;
 }) {
    const className = clsx(
-      'flex h-10 w-10 items-center justify-center text-sm border',
+      'flex h-10 w-10 items-center justify-center text-sm border rounded-md',
       {
-         'rounded-l-md': position === 'first' || position === 'single',
-         'rounded-r-md': position === 'last' || position === 'single',
-         'z-10 bg-blue-600 border-blue-600 text-white': isActive,
+         // 'rounded-l-md': position === 'first' || position === 'single',
+         // 'rounded-r-md': position === 'last' || position === 'single',
+         'z-10 bg-white border-blue-600': isActive,
          'hover:bg-gray-100': !isActive && position !== 'middle',
          'text-gray-300': position === 'middle',
       },
@@ -100,7 +100,7 @@ function PaginationArrow({
    isDisabled?: boolean;
 }) {
    const className = clsx(
-      'flex h-10 w-10 items-center justify-center rounded-md border',
+      'flex h-10 w-fit px-2 items-center justify-center rounded-md border',
       {
          'pointer-events-none text-gray-300': isDisabled,
          'hover:bg-gray-100': !isDisabled,
@@ -111,9 +111,9 @@ function PaginationArrow({
 
    const icon =
       direction === 'left' ? (
-         <ArrowLeftIcon className="w-4" />
+         <><ArrowLeftIcon className="w-4" /> Anterior</>
       ) : (
-         <ArrowRightIcon className="w-4" />
+         <>Seguinte <ArrowRightIcon className="w-4" /></>
       );
 
    return isDisabled ? (

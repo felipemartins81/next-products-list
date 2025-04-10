@@ -26,8 +26,9 @@ export default async function Page({ params }: pageParams) {
                   <p className="mb-6">Por {product.seller?.nickname}</p>
                   {product.original_price && <p className={styles.lineThrough}>$ {product.original_price}</p>}
                   <p className="mb-6">$ {product.price}</p>
-                  {/* TODO: add promotions */}
-                  {/* TODO: add 'mesmo preço em...' */}
+                  {product.installments && product.installments.quantity > 1 && (
+                     <p className="text-sm text-emerald-500">Mesmo preço em {product.installments.quantity} parcelas de $ {product.installments.amount}</p> 
+                  )}
                   {product.shipping?.free_shipping && <p className="mb-6">Envio grátis</p>}
                   {product.attributes.slice(0,3).map((e: {name: string, value_name: string}) => (
                      <p className="mb-6">{e.name}: {e.value_name}</p>

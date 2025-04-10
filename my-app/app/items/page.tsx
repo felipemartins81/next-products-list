@@ -27,18 +27,19 @@ export default async function SearchResults(props: pageProps) {
       <ul>
         {filteredProducts.slice(offset, limit).map((product) =>
           <li key={product.id}>
-            <Link href={`/items/${product.id}`}>
-              <div className="w-full flex justify-center md:block">
-                <Image src={product.thumbnail} alt={product.title} width={259} height={250} className="rounded-md" />
+            <Link href={`/items/${product.id}`} className="md:max-h-60">
+              <div className="flex justify-center md:w-60 md:h-60 md:float-left md:mr-6">
+                <Image src={product.thumbnail} alt={product.title} width={259} height={250} className="md:w-auto"/>
               </div>
-              <p className="mb-2">{product.title}</p>
-              <p className="mb-6">Por {product.seller?.nickname}</p>
-              {product.original_price && <p className={styles.lineThrough}>$ {product.original_price}</p>}
-              <p className="mb-6">$ {product.price}</p>
-              {/* TODO: add promotions */}
-              {/* TODO: add 'mesmo preço em...' */}
-              {product.shipping?.free_shipping && <p className="mb-6">Envio grátis</p>}
-              {product.condition != 'new' && <p className="mb-6">Recondicionado</p>}
+              <p className="mt-8 mb-1 text-xl text-slate-900">{product.title}</p>
+              <p className="mb-6 text-sm text-slate-500">Por {product.seller?.nickname}</p>
+              {product.original_price && <del className='text-xs text-slate-500'>$ {product.original_price}</del>}
+              <p className="text-2xl">$ {product.price}</p>
+              {product.installments && product.installments.quantity > 1 && (
+                <p className="text-sm text-emerald-500">Mesmo preço em {product.installments.quantity} parcelas de $ {product.installments.amount}</p> 
+              )}
+              {product.shipping?.free_shipping && <p className="mt-6 text-sm font-semibold text-emerald-500">Envio grátis</p>}
+              {product.condition != 'new' && <p className="mt-6">Recondicionado</p>}
               <div className={styles.clear}></div>
             </Link>
           </li>

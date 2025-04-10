@@ -6,7 +6,7 @@ import Link from 'next/link';
 export default function Header() {
    return (
     <nav className={styles.header}>
-       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-6">
+       <div className="mx-auto max-w-7xl px-2 sm:px-10">
           <div className="relative flex p-2 items-center justify-between">
              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                <Link href="/items" className="flex flex-shrink-0 items-center">
