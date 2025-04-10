@@ -1,21 +1,25 @@
-import postgres from 'postgres';
-import {
-  CustomerField,
-  CustomersTableType,
-  InvoiceForm,
-  InvoicesTable,
-  LatestInvoiceRaw,
-  Revenue,
-} from './definitions';
-import { formatCurrency } from './utils';
-import productsList from './json/products-list.json';
+import productsList from './json/search-MLA-arroz.json';
+// import { formatCurrency } from './utils';
 
-const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
-
-export async function fechProducts() {
+export async function fetchProducts() {
   try {
     const data = productsList;
     return data;
+  }
+  catch (error) {
+    console.error('Api Error:', error);
+    throw new Error('Failed to fetch products.');
+  }
+}
+
+export async function fetchProductDetail(id: string) {
+  try {
+    const product = await require(`./json/item-${id}.json`);
+    const description = await require(`./json/item-${id}-description.json`);
+    const categories = await require(`./json/item-${id}-category.json`);
+    product.description = description.plain_text || 'Nnehhuma descrição disponível para este produto ;(';
+    product.breadcrumbs = categories.path_from_root.map((e: { name: string }) => e.name).join(' > ');
+    return product;
   }
   catch (error) {
     console.error('Api Error:', error);
