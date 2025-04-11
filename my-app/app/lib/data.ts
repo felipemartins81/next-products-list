@@ -1,5 +1,4 @@
 import productsList from './json/search-MLA.json';
-// import { formatCurrency } from './utils';
 
 export async function fetchProducts() {
   try {

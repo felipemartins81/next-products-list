@@ -31,7 +31,7 @@ export default async function SearchResults(props: pageProps) {
               <div className="flex justify-center md:w-60 md:h-60 md:float-left md:mr-6">
                 <Image src={product.thumbnail} alt={product.title} width={259} height={250} className="md:w-auto"/>
               </div>
-              <p className="mt-8 mb-1 text-xl text-slate-900">{product.title}</p>
+              <p className="mt-8 mb-1 text-xl text-slate-900 font-light">{product.title}</p>
               <p className="mb-6 text-sm text-slate-500">Por {product.seller?.nickname}</p>
               {product.original_price && <del className='text-xs text-slate-500'>$ {product.original_price}</del>}
               <p className="text-2xl">$ {product.price}</p>
@@ -45,7 +45,7 @@ export default async function SearchResults(props: pageProps) {
           </li>
         )}
       </ul>
-      <Pagination totalPages={totalPages} />
+      {filteredProducts.length > 0 && <Pagination totalPages={totalPages} />}
     </main>
   );
 }
