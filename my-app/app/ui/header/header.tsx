@@ -2,6 +2,7 @@ import Image from 'next/image';
 import styles from "./header.module.scss";
 import Search from "./search";
 import Link from 'next/link';
+import { Suspense } from 'react';
 
 export default function Header() {
    return (
@@ -12,7 +13,9 @@ export default function Header() {
                <Link href="/items" className="flex flex-shrink-0 items-center">
                   <Image src={'/logo.png'} alt={'Mercado Libre logo'} width={134} height={34} className={styles.logo} />
                </Link>
-               <Search placeholder="Buscar produtos, marcas e mais..." />
+               <Suspense>
+                  <Search placeholder="Buscar produtos, marcas e mais..." />
+               </Suspense>
              </div>
           </div>
        </div>

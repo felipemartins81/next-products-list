@@ -1,0 +1,17 @@
+{
+  "name": "my-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "start-linux": "export $(cat .env | xargs) && npm start",
+    "start-env-windows": "(for /F \"tokens=*\" %i in (.env) do set %i) && npm start"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0",
+    "request": "^2.88.2"
+  }
+}
