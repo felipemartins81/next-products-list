@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
-    "start-linux": "export $(cat .env | xargs) && npm start",
+    "start-env-linux": "export $(cat .env | xargs) && npm start",
     "start-env-windows": "(for /F \"tokens=*\" %i in (.env) do set %i) && npm start"
   },
   "author": "",

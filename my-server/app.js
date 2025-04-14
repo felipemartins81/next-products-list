@@ -54,7 +54,7 @@ app.get('/api/items', function (req, res) {
   });
 });
 
-app.get('/api/item/:id', function (req, res) {
+app.get('/api/items/:id', function (req, res) {
   const httpRequest = {
     url: `${apiMockHost}/item-${req.params.id}.json`,
     json: true
