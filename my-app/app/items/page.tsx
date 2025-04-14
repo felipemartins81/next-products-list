@@ -3,6 +3,7 @@ import { fetchProducts } from '../lib/data';
 import styles from './items.module.scss';
 import Pagination from "@/app/ui/pagination";
 import Link from 'next/link';
+import { Suspense } from 'react';
 
 type pageProps = {
   searchParams?: Promise<{
@@ -45,7 +46,11 @@ export default async function SearchResults(props: pageProps) {
           </li>
         )}
       </ul>
-      {filteredProducts.length > 0 && <Pagination totalPages={totalPages} />}
+      {filteredProducts.length > 0 && (
+        <Suspense fallback={<p className="text-center">Carregando...</p>}>
+          <Pagination totalPages={totalPages} />
+        </Suspense>
+      )}
     </main>
   );
 }
