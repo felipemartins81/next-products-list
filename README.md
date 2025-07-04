@@ -7,8 +7,6 @@ Esse repositório inclui duas versões do app:
 
 ## localhost
 
-`cd my-app/`
-
 `npm install`
 
 `npm run dev` ou (`npm build` + `npm start`)
