@@ -1,9 +1,16 @@
-import { fetchProductDetail } from '@/app/lib/data';
+import { fetchProductDetail, fetchProducts } from '@/app/lib/data';
 import styles from './page.module.scss';
 import Image from 'next/image';
 
 type pageParams = {
    params: Promise<{ id: string }>
+}
+
+/** Next special function to generate static param at build time */
+export async function generateStaticParams() {
+   const products = await fetchProducts();
+   const productsIds = products.results.map(p => { return { id: p.id }});
+   return productsIds;
 }
 
 export default async function Page({ params }: pageParams) {
